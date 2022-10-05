@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { Banner, CreatorCard } from '../components';
+import { Banner, CreatorCard, NFTCard } from '../components';
 
 import images from '../assets';
 import { makeId } from '../utils/makeId';
@@ -41,12 +41,12 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center sm:px-4 p-12">
+    <div className="flex-1 justify-center sm:px-4 p-12">
       <div className="w-full minmd:w-4/5">
         <Banner
           name="Discover, collect, and sell extraordinary NFTs"
           childStyles="md:text-4xl sm:text-2xl xs:text-xl text-left"
-          parentStyles="justify-start mb-6 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl"
+          parentStyle="justify-start mb-7 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl"
         />
       </div>
 
@@ -81,9 +81,28 @@ const Home = () => {
         <div className="mt-10 ">
 
           <div className="flexBetween mx-4 xs:mx-0 minlg:mx-8 sm:flex-col sm:items-start">
-            <h1 className="font-popins dark:text-white text-nft-black-100; text-2xl minlg:text-4xl font-semibold ml-4 xs:ml-0">
+            <h1 className="flex-1 font-popins dark:text-white text-nft-black-100; text-2xl minlg:text-4xl font-semibold sm:mb-4">
               Hot Bids
             </h1>
+            <div>
+              <div>SearchBar</div>
+            </div>
+          </div>
+          <div className="mt-3 w-full flex flex-wrap justify-start md:justify-center">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+              <NFTCard
+                key={`nft-${i}`}
+                nft={{
+                  i,
+                  price: 10 - i * 0.5,
+                  name: `Nifty NFT ${i}`,
+                  seller: `0x${makeId(3)}...${makeId(4)}`,
+                  owner: `0x${makeId(3)}...${makeId(4)}`,
+                  description: 'Cool NFT on Sale',
+
+                }}
+              />
+            ))}
           </div>
         </div>
 
