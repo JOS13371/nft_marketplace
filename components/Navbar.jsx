@@ -55,7 +55,7 @@ const ButtonGroup = ({ setActive, router }) => {
 };
 
 const Navbar = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const [active, setActive] = useState('Explore NFTs');
@@ -77,18 +77,6 @@ const Navbar = () => {
       </div>
 
       <div className="flex flex-intial flex-row justify-end">
-        <div className="flex items-center mr-2">
-          <input
-            type="checkbox"
-            className="checkbox"
-            id="checkbox"
-            onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          />
-          <label htmlFor="checkbox" className="flexBetween w-8 h-4 dark:bg-black bg-sky-300 rounded-2xl p-1 relative label">
-
-            <div className="w-3 h-3 absolute bg-white rounded-full ball" />
-          </label>
-        </div>
         <div className="md:hidden flex ">
           <MenuItems active={active} setActive={setActive} />
           <div className="ml-4">
