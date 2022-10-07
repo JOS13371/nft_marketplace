@@ -1,4 +1,4 @@
-export const makeId = (Length) => {
+export const makeid = (Length) => {
   let result = '';
   const charracters = 'abcdefghijklmnopqrstuvwxyz123456789';
   const charractersLength = charracters.length;

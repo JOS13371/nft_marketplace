@@ -39,7 +39,7 @@ const Footer = () => {
                 id="checkbox"
                 onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
               />
-              <label htmlFor="checkbox" className="flexBetween w-8 h-4 dark:bg-black bg-sky-300 rounded-2xl p-1 relative label">
+              <label htmlFor="checkbox" className="flexBetween w-8 h-4 dark:bg-black bg-[#da18a3] rounded-2xl p-1 relative label">
 
                 <div className="w-3 h-3 absolute bg-white rounded-full ball" />
               </label>

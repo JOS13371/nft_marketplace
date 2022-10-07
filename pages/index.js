@@ -1,16 +1,27 @@
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
+
 import { Banner, CreatorCard, NFTCard } from '../components';
+import { NFTContext } from '../context/NFTContext';
 
 import images from '../assets';
-import { makeId } from '../utils/makeId';
+import { makeid } from '../utils/makeId';
 
 const Home = () => {
+  const { fetchNFTs } = useContext(NFTContext);
   const [hideButtons, setHideButtons] = useState(false);
+  const [nfts, setNfts] = useState([]);
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
   const { theme } = useTheme();
+
+  useEffect(() => {
+    fetchNFTs()
+      .then((items) => {
+        setNfts(items);
+      });
+  }, []);
 
   const isScrollable = () => {
     const { current } = scrollRef;
@@ -41,16 +52,14 @@ const Home = () => {
   };
 
   return (
-    <div className="flex-1 justify-center sm:px-4 p-12">
+    <div className="flex justify-center sm:px-4 p-12">
       <div className="w-full minmd:w-4/5">
         <Banner
           name="Discover, collect, and sell extraordinary NFTs"
           childStyles="md:text-4xl sm:text-2xl xs:text-xl text-left"
           parentStyle="justify-start mb-7 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl"
         />
-      </div>
 
-      <div>
         <h1 className="font-popins dark:text-white text-nft-black-100; text-2xl minlg:text-4xl font-semibold ml-4 xs:ml-0">
           Best Creators
         </h1>
@@ -62,7 +71,7 @@ const Home = () => {
                 key={`creator-${i}`}
                 rank={i}
                 creatorImage={images[`creator${i}`]}
-                creatorName={`0x${makeId(3)}...${makeId(4)}`}
+                creatorName={`0x${makeid(3)}...${makeid(4)}`}
                 creatorEths={10 - i * 0.5}
               />
             ))}{!hideButtons && (
@@ -89,20 +98,21 @@ const Home = () => {
             </div>
           </div>
           <div className="mt-3 w-full flex flex-wrap justify-start md:justify-center">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+            {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
+            {/*   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
               <NFTCard
                 key={`nft-${i}`}
                 nft={{
                   i,
                   price: 10 - i * 0.5,
                   name: `Nifty NFT ${i}`,
-                  seller: `0x${makeId(3)}...${makeId(4)}`,
-                  owner: `0x${makeId(3)}...${makeId(4)}`,
+                  seller: `0x${makeid(3)}...${makeid(4)}`,
+                  owner: `0x${makeid(3)}...${makeid(4)}`,
                   description: 'Cool NFT on Sale',
 
                 }}
               />
-            ))}
+            ))} */}
           </div>
         </div>
 
