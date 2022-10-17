@@ -76,10 +76,13 @@ const CheckActive = (active, setActive, router) => {
 };
 
 const Navbar = () => {
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const [active, setActive] = useState('Explore NFTs');
+  useEffect(() => {
+    setTheme('dark');
+  }, []);
 
   useEffect(() => {
     CheckActive(active, setActive, router);
@@ -120,7 +123,7 @@ const Navbar = () => {
               height={20}
               alt="close"
               onClick={() => setIsOpen(false)}
-              className={theme === 'light' && 'filter invert'}
+              className={theme === 'light' ? 'filter invert' : ''}
             />
           ) : (
             <Image
@@ -130,7 +133,7 @@ const Navbar = () => {
               height={25}
               alt="menu"
               onClick={() => setIsOpen(true)}
-              className={theme === 'light' && 'filter invert'}
+              className={theme === 'light' ? 'filter invert' : ''}
             />
           )}
 
