@@ -56,6 +56,10 @@ module.exports = {
         '-5': '-5',
         0: '0',
       },
+      transitionDelay: {
+        0: '1000ms',
+        2000: '2000ms',
+      },
     },
     screens: {
       lg: { max: '1800px' },
