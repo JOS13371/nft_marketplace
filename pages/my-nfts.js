@@ -93,6 +93,7 @@ const MyNFTS = () => {
               setActiveSelect={setActiveSelect}
               handleSearch={onHandleSearch}
               clearSearch={onClearSearch}
+              toggleFilter
             />
           </div>
           <div className="mt-3 w-full flex flex-wrap">

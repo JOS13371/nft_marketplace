@@ -141,12 +141,15 @@ const NFTDetails = () => {
       {isLoadingNFT && (
         <Modal
           header="Buying NFT...."
-          body={<div className='flexCenter flex-col text-center'>
-            <div className='relative w-52 h-52'>
-              <Loader />
+          body={(
+            <div className="flexCenter flex-col text-center">
+              <div className="relative w-52 h-52">
+                <Loader />
+              </div>
             </div>
-          </div>}
+)}
           footer={(
+            <div />
         )}
           handleClose={() => setPaymentModal(false)}
         />
