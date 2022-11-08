@@ -66,6 +66,7 @@ export const NFTProvider = ({ children }) => {
       const added = await client.add(data);
       const URL = `${subdomain}/ipfs/${added.path}`;
 
+      // eslint-disable-next-line no-use-before-define
       await createSale(URL, price);
 
       router.push('/');
@@ -92,7 +93,7 @@ export const NFTProvider = ({ children }) => {
 
   const fetchNFTs = async () => {
     setIsLoadingNFT(false);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider('https://eth-goerli.g.alchemy.com/v2/lWzNVb6mMU8PnvDcsDRfQ7QOsciukYts');
     const contract = fetchContract(provider);
 
     const data = await contract.fetchMarketItems();

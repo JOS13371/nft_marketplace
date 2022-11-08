@@ -1,22 +1,36 @@
-const fs = require('fs');
+/**
+* @type import('hardhat/config').HardhatUserConfig
+*/
+require('dotenv').config();
+require('@nomiclabs/hardhat-ethers');
 
-require('@nomiclabs/hardhat-waffle');
-
-const privateKey = fs.readFileSync('.secret').toString().trim();
+const { API_URL, PRIVATE_KEY } = process.env;
 
 module.exports = {
+  defaultNetwork: 'goerli',
   networks: {
-    hardhat: {
-      chainId: 1337,
+    hardhat: {},
+    goerli: {
+      url: API_URL,
+      accounts: [`0x${PRIVATE_KEY}`],
     },
-    mumbai: {
-      url: 'https://rpc-mumbai.maticvigil.com',
-      accounts: [privateKey],
-    },
-    // rinkeby: {
-    // url: 'https://rinkeby.infura.io/v3/bed4fdcc76bb4978a9a3103ef0946f64',
-    //   accounts: [privateKey],
-    // },
   },
-  solidity: '0.8.4',
+  solidity: {
+    version: '0.8.4',
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
+  paths: {
+    sources: './contracts',
+    tests: './test',
+    cache: './cache',
+    artifacts: './artifacts',
+  },
+  mocha: {
+    timeout: 20000,
+  },
 };
