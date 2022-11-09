@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flexCenter">
-            <p className="font-bold mt-7">{theme === 'dark' ? 'D' : 'L'}{theme.slice(1)} Theme</p>
+            <p className="font-bold mt-7">{theme === 'dark' ? 'D' : 'L'}{theme?.slice(1)} Theme</p>
             <div className="flex items-center mt-7 ml-7 ">
               <input
                 type="checkbox"
